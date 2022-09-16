@@ -6,8 +6,8 @@
     <title></title>
     <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js"></script>
-    <script src="https://api.mapbox.com/mapbox-gl-js/v2.7.0/mapbox-gl.js"></script>
-    <link href="https://api.mapbox.com/mapbox-gl-js/v2.7.0/mapbox-gl.css" rel="stylesheet" />
+    <script src="https://api.mapbox.com/mapbox-gl-js/v2.10.0/mapbox-gl.js"></script>
+    <link href="https://api.mapbox.com/mapbox-gl-js/v2.10.0/mapbox-gl.css" rel="stylesheet" />
     <script src="https://npmcdn.com/csv2geojson@latest/csv2geojson.js"></script>
     <script src="https://npmcdn.com/@turf/turf/turf.min.js"></script>
     <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.0/mapbox-gl-geocoder.min.js"></script>
@@ -150,8 +150,9 @@
             style: "mapbox://styles/b2p/ckkymyxny2ktn17nva7albdy7", // YOUR TURN: choose a style: https://docs.mapbox.com/api/maps/#styles
             center: [34.50236, 4.26485], // starting position [lng, lat]
             zoom: 4, // starting zoom
-            hash: true,
-            transformRequest: transformRequest,
+            // hash: true,
+            // projection: 'globe',
+            transformRequest: transformRequest
         });
 
         $(document).ready(function() {
