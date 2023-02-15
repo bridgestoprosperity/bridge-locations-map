@@ -154,6 +154,8 @@
             // projection: 'globe',
             transformRequest: transformRequest
         });
+        const nav = new mapboxgl.NavigationControl();
+        map.addControl(nav, 'top-right');        
 
         $(document).ready(function() {
             $.ajax({
