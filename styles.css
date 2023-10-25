@@ -1,0 +1,234 @@
+body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  font-family: "Kumbh Sans", sans-serif;
+}
+
+.sidebar {
+  padding: 10px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 300px;
+  height: auto;
+  overflow-y: scroll;
+  max-height: 100%;
+}
+
+.click-menu {
+  position: fixed;
+  top: 10%;
+  right: -400px;
+  width: 400px;
+  max-height: 90%;
+  background-color: #f8f9fa;
+  z-index: 1;
+  transition: 0.5s;
+  overflow-y: scroll;
+}
+
+
+.map {
+  position: fixed;
+  top: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.mapboxgl-popup {
+  padding-bottom: 5px;
+}
+
+.mapboxgl-popup-close-button {
+  display: none;
+}
+
+.mapboxgl-popup-content {
+  font: 400 15px/22px "Source Sans Pro", "Helvetica Neue", Sans-serif;
+  padding: 0;
+  width: 250px;
+}
+
+.mapboxgl-popup-content-wrapper {
+  padding: 1%;
+}
+
+.mapboxgl-popup-content h3 {
+  background: rgb(61, 59, 59);
+  text-align: center;
+  color: #fff;
+  margin: 0;
+  display: block;
+  padding: 15px;
+  font-weight: 700;
+  margin-top: -5px;
+}
+
+.mapboxgl-popup-content h4 {
+  margin: 0;
+  display: block;
+  padding: 10px 3px 10px 10px;
+  font-weight: 400;
+}
+
+.mapboxgl-container {
+  cursor: pointer;
+}
+
+.mapboxgl-popup-anchor-top > .mapboxgl-popup-content {
+  margin-top: 3px;
+}
+
+.mapboxgl-popup-anchor-top > .mapboxgl-popup-tip {
+  border-bottom-color: rgb(61, 59, 59);
+}
+
+.map-overlay {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background: rgba(255, 255, 255, 0.9);
+  margin-right: 20px;
+  font-family: Arial, sans-serif;
+  overflow: auto;
+  border-radius: 3px;
+}
+
+#features {
+  top: 0;
+  height: 100px;
+  margin-top: 20px;
+  width: 250px;
+}
+
+#legend {
+  padding: 10px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  line-height: 18px;
+  height: 40px;
+  margin-bottom: 40px;
+  width: 100px;
+}
+
+.legend-key {
+  display: inline-block;
+  border-radius: 20%;
+  width: 10px;
+  height: 10px;
+  margin-right: 5px;
+}
+
+#menu {
+  position: absolute;
+  background: #efefef;
+  padding: 10px;
+  font-family: "Open Sans", sans-serif;
+}
+
+#map {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+}
+
+/* Popup styling */
+
+.mapboxgl-popup {
+  padding-bottom: 5px;
+}
+
+.mapboxgl-popup-close-button {
+  display: none;
+}
+
+.mapboxgl-popup-content {
+  font: 400 15px/22px "Source Sans Pro", "Helvetica Neue", Sans-serif;
+  padding: 0;
+  width: 250px;
+}
+
+.mapboxgl-popup-content-wrapper {
+  padding: 1%;
+}
+
+.mapboxgl-popup-content h3 {
+  background: rgb(61, 59, 59);
+  text-align: center;
+  color: #fff;
+  margin: 0;
+  display: block;
+  padding: 15px;
+  font-weight: 700;
+  margin-top: -5px;
+}
+
+.mapboxgl-popup-content h4 {
+  margin: 0;
+  display: block;
+  padding: 10px 3px 10px 10px;
+  font-weight: 400;
+}
+
+.mapboxgl-container {
+  cursor: pointer;
+}
+
+.mapboxgl-popup-anchor-top > .mapboxgl-popup-content {
+  margin-top: 3px;
+}
+
+.mapboxgl-popup-anchor-top > .mapboxgl-popup-tip {
+  border-bottom-color: rgb(61, 59, 59);
+}
+
+.map-overlay {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background: rgba(255, 255, 255, 0.9);
+  margin-right: 20px;
+  font-family: Arial, sans-serif;
+  overflow: auto;
+  border-radius: 3px;
+}
+
+#features {
+  top: 0;
+  height: 100px;
+  margin-top: 20px;
+  width: 250px;
+}
+
+#legend {
+  padding: 10px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  line-height: 18px;
+  height: 40px;
+  margin-bottom: 40px;
+  width: 100px;
+}
+
+.legend-key {
+  display: inline-block;
+  border-radius: 20%;
+  width: 10px;
+  height: 10px;
+  margin-right: 5px;
+}
+
+#menu {
+  position: absolute;
+  background: #efefef;
+  padding: 10px;
+  font-family: "Open Sans", sans-serif;
+}
+/* font-family: 'B612 Mono', monospace;
+  font-family: 'Fira Sans', sans-serif;
+  font-family: 'Inconsolata', monospace;
+  font-family: 'Kanit', sans-serif;
+  font-family: 'Kumbh Sans', sans-serif;
+  font-family: 'Major Mono Display', monospace;
+  font-family: 'Montserrat', sans-serif;
+  font-family: 'Ubuntu Mono', monospace; */
