@@ -75,8 +75,7 @@
                         <div class="" id="legend-menu">
                             <label class="text-muted p-0 m-0" style=" font-size: small;" for="geocoder">Legend</label>
                         </div>
-                        <p class="text-muted pt-2 fst-italic fs-6 my-0"> Zoom into any coutry where we've built bridges
-                            and click on a bridge for more information</p>
+                        <p class="text-muted pt-2 fst-italic fs-6 my-0"> Zoom into any country with B2P bridges and click on a project icon for more information.</p>
                     </div>
                 </div>
             </div>
@@ -145,24 +144,23 @@
                             });
 
                             map.loadImage(
-                                ['https://cdn.glitch.global/7b563c71-7e8a-4846-9c51-6f76c38720b9/Complete.png?v=1659401835601'],
+                                ['./Complete.png'],
                                 (error, image) => {
                                     if (error) throw error;
 
-                                    // Add the image to the map style.
                                     map.addImage('completed', image);
 
                                     // Add a layer to use the image to represent the data.
                                     map.addLayer({
                                         'id': 'completedID',
                                         'type': 'symbol',
-                                        'source': 'b2pdata', // reference the data source
+                                        'source': 'b2pdata',
                                         'layout': {
                                             'icon-image': [
                                                 'match', ['get', 'Stage'],
                                                 'Complete',
                                                 'completed',
-                                                '#ccc'
+                                                'https://cdn.glitch.global/7b563c71-7e8a-4846-9c51-6f76c38720b9/Complete.png?v=1659401835601'
                                             ],
 
                                             // 'completed', // reference the image
@@ -173,7 +171,7 @@
                                 }
                             );
                             map.loadImage(
-                                ['https://cdn.glitch.global/7b563c71-7e8a-4846-9c51-6f76c38720b9/Under%20Construction.png?v=1659401842706'],
+                                ['./Under Construction.png'],
                                 (error, image) => {
                                     if (error) throw error;
 
@@ -190,7 +188,7 @@
                                                 'match', ['get', 'Stage'],
                                                 'Under Construction',
                                                 'construction',
-                                                '#ccc'
+                                                'https://cdn.glitch.global/7b563c71-7e8a-4846-9c51-6f76c38720b9/Under%20Construction.png?v=1659401842706'
                                             ],
 
                                             // 'completed', // reference the image
@@ -201,7 +199,7 @@
                                 }
                             );
                             map.loadImage(
-                                ['https://cdn.glitch.global/7b563c71-7e8a-4846-9c51-6f76c38720b9/Confirmed.png?v=1659401838906'],
+                                ['./Confirmed.png'],
                                 (error, image) => {
                                     if (error) throw error;
 
@@ -218,7 +216,7 @@
                                                 'match', ['get', 'Stage'],
                                                 'Confirmed',
                                                 'confirmed',
-                                                '#ccc'
+                                                'https://cdn.glitch.global/7b563c71-7e8a-4846-9c51-6f76c38720b9/Confirmed.png?v=1659401838906'
                                             ],
 
                                             // 'completed', // reference the image
@@ -234,7 +232,7 @@
                             const layerList = ["completedID", "constructionID", "confirmedID"]
 
                             layerList.forEach(function (i) {
-                                console.log(i);
+                                // console.log(i);
 
                                 map.on("click", i, function (e) {
                                     var coordinates = e.features[0].geometry.coordinates.slice();
@@ -244,8 +242,9 @@
                                         `<div class="card border-0" style="max-width: 20rem;">
                                             <div class="card-header fw-bold px-2">` + e.features[0].properties.Name + `</div>
                                             <div class="card-body px-2">
-                                                <p class="card-text py-0">Population served: ` + e.features[0].properties.Pop_served + `</p>
+                                                <p class="card-text py-0">Population Directly Served: ` + e.features[0].properties.Pop_served + `</p>
                                                 <p class="card-text py-0">Country: ` + e.features[0].properties.Country + `</p>
+                                                <p class="card-text py-0">Stage: ` + e.features[0].properties.Stage + `</p>
                                                 <p class="card-text py-0">Bridge Type: ` + e.features[0].properties.Bridge_type + `</p>
                                                 <p class="card-text py-0">Project Type: ` + e.features[0].properties.Project_type + `</p>
                                             </div>
@@ -288,9 +287,9 @@
                             for (const c of countryList) {
                                 counts[c] = counts[c] ? counts[c] + 1 : 1;
                             }
-                            console.log(counts.Nepal);
+                            // console.log(counts.Nepal);
                             for (const c in counts) {
-                                console.log(c, counts[c]);
+                                // console.log(c, counts[c]);
                             };
                             map.addLayer({
                                 id: "countryActive",
@@ -323,14 +322,6 @@
                                     false
                                 ]
                             ]);
-                            map.setFeatureState({
-                                source: 'my-source',
-                                sourceLayer: 'my-source-layer',
-                                id: e.features[0].id,
-                            }, {
-                                hover: true
-                            });
-
 
 
                             // uniqueCountries.forEach(function(l) {
@@ -386,7 +377,7 @@
         });
 
 
-        var layers = ["Done", "In Progress"];
+        var layers = ["Completed", "In Progress"];
         var colors = ["#009149", "#EA7149"];
 
         // Create the legend
