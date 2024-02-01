@@ -121,8 +121,9 @@
         $(document).ready(function () {
             $.ajax({
                 type: "GET",
-                //YOUR TURN: Replace with csv export link
-                url: "https://docs.google.com/spreadsheets/d/1qml0XBe4e1_T5evYCvvqhoo-1Dm2uTLSvdUHiLSSSik/gviz/tq?tqx=out:csv&sheet=B2P_bridges",
+                // old data: 
+                // url: "https://docs.google.com/spreadsheets/d/1qml0XBe4e1_T5evYCvvqhoo-1Dm2uTLSvdUHiLSSSik/gviz/tq?tqx=out:csv&sheet=B2P_bridges",
+                url: "https://docs.google.com/spreadsheets/d/14x8lX8z4vhXF4eiUoSkKjmlDGRIPc5-y4lc7IuOvgVE/gviz/tq?tqx=out:csv&sheet=B2P_bridges",
                 dataType: "text",
                 success: function (csvData) {
                     makeGeoJSON(csvData);
