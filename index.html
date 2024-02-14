@@ -32,7 +32,7 @@
     <div class="sidebar ">
         <div class="accordion shadow-sm rounded-3" id="menuAcc">
             <div class="accordion-item">
-                
+
                 <h2 class="accordion-header" id="headingOne">
                     <button class="accordion-button bg-body-tertiary text-bg-light fw-bold" type="button"
                         data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true"
@@ -75,7 +75,8 @@
                         <div class="" id="legend-menu">
                             <label class="text-muted p-0 m-0" style=" font-size: small;" for="geocoder">Legend</label>
                         </div>
-                        <p class="text-muted pt-2 fst-italic fs-6 my-0"> Zoom into any country with B2P bridges and click on a project icon for more information.</p>
+                        <p class="text-muted pt-2 fst-italic fs-6 my-0"> Zoom into any country with B2P bridges and
+                            click on a project icon for more information.</p>
                     </div>
                 </div>
             </div>
@@ -116,7 +117,7 @@
             transformRequest: transformRequest
         });
         const nav = new mapboxgl.NavigationControl();
-        map.addControl(nav, 'top-right');        
+        map.addControl(nav, 'top-right');
 
         $(document).ready(function () {
             $.ajax({
@@ -126,6 +127,7 @@
                 url: "https://docs.google.com/spreadsheets/d/14x8lX8z4vhXF4eiUoSkKjmlDGRIPc5-y4lc7IuOvgVE/gviz/tq?tqx=out:csv&sheet=B2P_bridges",
                 dataType: "text",
                 success: function (csvData) {
+                    console.log("success", csvData)
                     makeGeoJSON(csvData);
                 },
             });
@@ -161,7 +163,7 @@
                                                 'match', ['get', 'Stage'],
                                                 'Complete',
                                                 'completed',
-                                                'https://cdn.glitch.global/7b563c71-7e8a-4846-9c51-6f76c38720b9/Complete.png?v=1659401835601'
+                                                './complete.png'
                                             ],
 
                                             // 'completed', // reference the image
@@ -189,7 +191,7 @@
                                                 'match', ['get', 'Stage'],
                                                 'Under Construction',
                                                 'construction',
-                                                'https://cdn.glitch.global/7b563c71-7e8a-4846-9c51-6f76c38720b9/Under%20Construction.png?v=1659401842706'
+                                                './under-construction.png'
                                             ],
 
                                             // 'completed', // reference the image
@@ -217,7 +219,7 @@
                                                 'match', ['get', 'Stage'],
                                                 'Confirmed',
                                                 'confirmed',
-                                                'https://cdn.glitch.global/7b563c71-7e8a-4846-9c51-6f76c38720b9/Confirmed.png?v=1659401838906'
+                                                './confirmed.png'
                                             ],
 
                                             // 'completed', // reference the image
