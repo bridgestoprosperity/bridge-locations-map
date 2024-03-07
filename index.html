@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Display a map on a webpage</title>
+  <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+  <!-- add a icon /public/b2plogo.ico-->
+  <link rel="icon" href="/bridge-locations-map/assets/b2plogo-Yjq7Og1n.ico" type="image/x-icon">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@200..900&family=Kumbh+Sans:wght@100..900&display=swap')
+  </style>
+  <script type="module" crossorigin src="/bridge-locations-map/assets/index-qHycSUAf.js"></script>
+  <link rel="stylesheet" crossorigin href="/bridge-locations-map/assets/index-y9dEjwpZ.css">
+</head>
+
+<body>
+  <div id="map"></div>
+  <div class="toolbar-container">
+    <div class="toolbar">
+      <ul class="nav nav-pills nav-fill gap-2 p-1 me-3 small bg-white rounded-5 " id="map-type" role="tablist"
+        style="--bs-nav-link-color: var(--bs-primary); --bs-nav-pills-link-active-color: var(--bs-white); --bs-nav-pills-link-active-bg: var(--bs-primary); border: 2px solid #E5E5E5;">
+        <li class="nav-item" role="presentation">
+          <button class="nav-link active rounded-5" id="standard-button" data-bs-toggle="tab" type="button" role="tab"
+            aria-selected="true">Standard Map</button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link rounded-5" id="sat-button" data-bs-toggle="tab" type="button" role="tab"
+            aria-selected="false">Satellite Map</button>
+        </li>
+      </ul>
+      <div class="vr"></div>
+      <ul class="nav nav-pills nav-fill gap-2 p-1 me-3 ms-3 small bg-white rounded-5 " id="3d-switch" role="tablist"
+        style="--bs-nav-link-color: var(--bs-primary); --bs-nav-pills-link-active-color: var(--bs-white); --bs-nav-pills-link-active-bg: var(--bs-primary); border: 2px solid #E5E5E5;">
+        <li class="nav-item" role="presentation">
+          <button class="nav-link active rounded-5" id="2d-button" data-bs-toggle="tab" type="button" role="tab"
+            aria-selected="true" value="2d">2D Map</button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link rounded-5" id="3d-button" data-bs-toggle="tab" type="button" role="tab"
+            aria-selected="false" value="3d">3D Map</button>
+        </li>
+      </ul>
+      <div class="vr"></div>
+      <p class="card-text me-3 ms-3 toolbar-text">Zoom in to explore bridge sites</p>
+    </div>
+  </div>
+  <div class="side-bar" id="side-bar">
+
+  </div>
+  <!-- run main js as module -->
+</body>
+
+</html>
