@@ -6,12 +6,12 @@
   <title>Display a map on a webpage</title>
   <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
   <!-- add a icon /public/b2plogo.ico-->
-  <link rel="icon" href="/bridge-locations-map/assets/b2plogo-Yjq7Og1n.ico" type="image/x-icon">
+  <link rel="icon" href="./b2plogo.ico" type="image/x-icon">
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@200..900&family=Kumbh+Sans:wght@100..900&display=swap')
   </style>
-  <script type="module" crossorigin src="/bridge-locations-map/assets/index-qHycSUAf.js"></script>
-  <link rel="stylesheet" crossorigin href="/bridge-locations-map/assets/index-y9dEjwpZ.css">
+  <script type="module" crossorigin src="./assets/index-CT8lPWrm.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-bKWJ51_P.css">
 </head>
 
 <body>
@@ -30,7 +30,7 @@
         </li>
       </ul>
       <div class="vr"></div>
-      <ul class="nav nav-pills nav-fill gap-2 p-1 me-3 ms-3 small bg-white rounded-5 " id="3d-switch" role="tablist"
+      <ul class="nav nav-pills nav-fill gap-2 p-1 ms-3 small bg-white rounded-5 " id="3d-switch" role="tablist"
         style="--bs-nav-link-color: var(--bs-primary); --bs-nav-pills-link-active-color: var(--bs-white); --bs-nav-pills-link-active-bg: var(--bs-primary); border: 2px solid #E5E5E5;">
         <li class="nav-item" role="presentation">
           <button class="nav-link active rounded-5" id="2d-button" data-bs-toggle="tab" type="button" role="tab"
@@ -41,14 +41,22 @@
             aria-selected="false" value="3d">3D Map</button>
         </li>
       </ul>
-      <div class="vr"></div>
-      <p class="card-text me-3 ms-3 toolbar-text">Zoom in to explore bridge sites</p>
+      <div class=" ms-3 toolbar-text-vr"></div>
+      <p class="card-text me-3 ms-3 toolbar-text" id="bridge-data">Zoom in to explore bridge sites</p>
     </div>
   </div>
   <div class="side-bar" id="side-bar">
-
+    <div class="sidebar-button" id="sidebar-button">
+      <div class="sidebar-button-img" id="sidebar-button-img"></div>
+    </div>
   </div>
-  <!-- run main js as module -->
+  <div class="bridge-card" id="bridge-card">
+    <div class="bridge-card-button-container" id="bridge-card-button-container">
+      <div class="bridge-card-button-img" id="bridge-card-button-img"></div>
+    </div>
+    <div class="bridge-card-title" id="bridge-card-title"></div>
+    <div class="bridge-card-text" id="bridge-card-text"></div>
+  </div>
 </body>
 
 </html>
