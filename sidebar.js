@@ -41,7 +41,7 @@ export function addSidebar(map) {
             let countryCoordinates = country[1];
 
             // Fetch and setup the country SVG and text
-            fetch(`/countries/${countryName}.svg`)
+            fetch(`/bridge-locations-map/countries/${countryName}.svg`)
                 .then((response) => response.text())
                 .then((svgData) => {
                     let countryContainer = document.createElement("div");
