@@ -1,0 +1,291 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+#map {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+}
+
+.toolbar-container {
+    display: flex;
+    justify-content: center;
+    width: calc(100% - 120px);
+    height: 100%;
+    position: absolute;
+    top: 0px;
+    left: 120px;
+    /* background-color: pink; */
+    pointer-events: none;
+}
+.toolbar {
+    margin-top: 10px;
+    padding: 5px;
+    background-color: #f8f8f8;
+    border-radius: 30px;
+    z-index: 3;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
+    display: flex;
+    align-items: center;
+    height: 60px;
+    /* width: 850px; */
+    max-width: calc(100% - 120px);
+    min-width: 528px;
+    font-family: Kumbh Sans, monospace;
+    font-weight: 500;
+    font-size: 18px;
+    z-index: 3;
+    pointer-events: auto;
+    justify-content: left;
+}
+.toolbar-text {
+    font-size: 16px;
+    color: #707070;
+    margin: 0;
+    padding: 0;
+    font-family: Inconsolata, monospace;
+    font-weight: 500;
+    width: 185px;
+    /* background-color: blue; */
+}
+.toolbar-text-vr {
+    display: inline-block;
+    align-self: stretch;
+    width: var(--bs-border-width);
+    min-height: 1em;
+    background-color: currentcolor;
+    opacity: 0.25;
+}
+
+.side-bar {
+    position: absolute;
+    left: 0;
+    top: 5%;
+    height: 90%;
+    width: 120px;
+    background-color: #f8f8f8;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    z-index: 3;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    padding: 5px;
+    /* set the right border radiuses to be 10px */
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    font-family: Kumbh Sans, monospace;
+    font-weight: 500;
+    transition: transform 0.5s ease;
+}
+.country {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #707070;
+}
+.country svg {
+    stroke: #707070;
+    fill: #707070;
+}
+.country:hover svg {
+    stroke: #3a8448;
+    stroke-width: 3px;
+    filter: drop-shadow(0px 0px 5px rgba(0, 0, 0, 0.25));
+}
+.country:hover {
+    color: #3a8448;
+    cursor: pointer;
+}
+.country:active svg {
+    stroke-width: 2px;
+    filter: none;
+}
+
+.country-icon {
+    width: 40px;
+    height: auto;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+}
+.country-icon svg {
+    width: 40px;
+    height: 40px;
+}
+
+.country-text {
+    font-size: 10px;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    margin: 0px;
+    padding: 0;
+}
+
+.country-button {
+    border: none;
+    background: none;
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.country-button:focus {
+    outline: none;
+}
+
+.country-icon {
+    transition: fill 0.2s ease; /* This works if SVG is inline */
+}
+
+.sidebar-button {
+    position: absolute;
+    top: 50%;
+    right: -29px;
+    transform: translateY(-50%);
+    width: 30px;
+    height: 100px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    background-color: #f8f8f8;
+    box-shadow: 5px 0px 5px 0px rgba(0, 0, 0, 0.25);
+    z-index: -1;
+    /* pointer on hover */
+    cursor: pointer;
+}
+.sidebar-button-img {
+    width: 30px;
+    height: 30px;
+    transform: rotate(180deg);
+    position: absolute;
+    top: 37px;
+    right: -1px;
+    background-image: url("/vertical-lines.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    transition: transform 0.2s ease;
+}
+
+.sidebar-button:hover .sidebar-button-img {
+    transform: rotate(0deg);
+    background-image: url("/vertical-lines-green.svg");
+}
+
+.bridge-card {
+    position: absolute;
+    top: calc(50% - 100px);
+    right: -350px;
+    /* width: 250px; */
+    /* height: 275px; */
+    background-color: #f8f8f8;
+    border-bottom-left-radius: 10px;
+    border-top-left-radius: 10px;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    z-index: 3;
+    /* padding: 10px; */
+    font-weight: 500;
+    text-align: left;
+    transition: transform 0.5s ease;
+}
+
+.bridge-card-button-container {
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    top: 0px; /* Adjusted to properly position the container */
+    left: 0px; /* Adjust as needed to align the button as you want */
+    cursor: pointer;
+    display: flex; /* Ensures the content (the 'x') is centered */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+}
+
+.bridge-card-button-img {
+    width: 20px; /* Adjusted size for the 'x' */
+    height: 20px; /* Adjusted size for the 'x' */
+    background-image: url("/x-button.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    transition: transform 0.2s ease;
+}
+
+.bridge-card-button-img:hover {
+    transform: rotate(180deg);
+    /* Uncomment the next line if you want to change the background image on hover */
+    /* background-image: url("/vertical-lines-green.svg"); */
+}
+
+.bridge-card-title {
+    font-size: 20px;
+    color: #000000;
+    margin: 0;
+    margin-left: 30px;
+    margin-right: 2px;
+    padding: 0;
+    font-family: inconsolata, monospace;
+    font-weight: 800;
+    text-align: center;
+}
+.bridge-card-text {
+    font-size: 16px;
+    color: #707070;
+    margin: 10px;
+    padding: 0;
+    font-family: inconsolata, monospace;
+    font-weight: 500;
+    text-align: left;
+    line-height: 1;
+}
+
+/* if screen is less than 850px wide then get rid of toolbartext and toolbar-text-vr */
+@media only screen and (max-width: 1000px) {
+    .toolbar-text {
+        display: none;
+        width: 0px;
+    }
+    .toolbar-text-vr {
+        display: none;
+    }
+}
+
+/* General adjustments for smaller screens */
+@media only screen and (max-width: 768px) {
+    .toolbar-container {
+        width: 100%;
+        left: 0;
+    }
+    .toolbar {
+        max-width: 100%;
+        min-width: 0; /* Allow toolbar to shrink */
+        justify-content: center; /* Center items if less space */
+    }
+    .side-bar {
+        display: none;
+    }
+}
+
+/* Further adjustments for very small screens */
+@media only screen and (max-width: 530px) {
+    .toolbar {
+        display: none;
+    }
+
+    .side-bar {
+        display: none; /* Optional: Hide sidebar on very small screens */
+    }
+}

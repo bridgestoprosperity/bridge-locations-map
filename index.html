@@ -2,444 +2,60 @@
 <html>
 
 <head>
-    <meta charset="utf-8" />
-    <title>Bridges to Prosperity</title>
-    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js"></script>
-    <script src='https://api.mapbox.com/mapbox-gl-js/v3.0.0-beta.1/mapbox-gl.js'></script>
-    <link href='https://api.mapbox.com/mapbox-gl-js/v3.0.0-beta.1/mapbox-gl.css' rel='stylesheet' />
-    <link rel="stylesheet" href="https://bootswatch.com/5/flatly/bootstrap.min.css" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
-    <link rel="stylesheet" href="./styles.css" />
-
-    <script src="https://npmcdn.com/csv2geojson@latest/csv2geojson.js"></script>
-    <script src="https://npmcdn.com/@turf/turf/turf.min.js"></script>
-
-    <script
-        src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.0/mapbox-gl-geocoder.min.js"></script>
-    <link rel="stylesheet"
-        href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.0/mapbox-gl-geocoder.css"
-        type="text/css" />
-
-    <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.auto.min.js"></script>
-    <link rel="shortcut icon" type="image/x-icon" href="b2plogo.ico" />
+  <meta charset="utf-8">
+  <title>Display a map on a webpage</title>
+  <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+  <!-- add a icon /public/b2plogo.ico-->
+  <link rel="icon" href="/b2plogo.ico" type="image/x-icon">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@200..900&family=Kumbh+Sans:wght@100..900&display=swap')
+  </style>
 </head>
 
 <body>
-    <div id="map"></div>
-    <div class="sidebar ">
-        <div class="accordion shadow-sm rounded-3" id="menuAcc">
-            <div class="accordion-item">
-
-                <h2 class="accordion-header" id="headingOne">
-                    <button class="accordion-button bg-body-tertiary text-bg-light fw-bold" type="button"
-                        data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true"
-                        aria-controls="collapseOne">
-                        B2P Bridge Locations
-                    </button>
-                </h2>
-                <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
-                    data-bs-parent="#menuAcc">
-                    <div class="accordion-body p-2">
-                        <!-- <div class="container"> -->
-                        <p class="fw-bold pb-1 m-0">Map Controls</p>
-                        <label class="text-muted p-0 m-0" style=" font-size: small;" for="geocoder">Change Map
-                            styling</label>
-                        <div class="row">
-
-                            <div class="col-md-4 pb-2">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="rtoggle" value="satellite"
-                                        id="satellite-checkbox">
-                                    <label class="form-check-label" for="satCheckbox">
-                                        Satelllite
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="rtoggle" value="3D Map"
-                                        id="3d-checkbox">
-                                    <label class="form-check-label" for="3dCheckbox">
-                                        3D Map
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-                        <label class="text-muted p-0 m-0" style=" font-size: small;" for="geocoder">Search for
-                            Location</label>
-                        <div class="geocoder pb-2" id="geocoder"></div>
-                        <hr class="my-2">
-                        <div class="" id="legend-menu">
-                            <label class="text-muted p-0 m-0" style=" font-size: small;" for="geocoder">Legend</label>
-                        </div>
-                        <p class="text-muted pt-2 fst-italic fs-6 my-0"> Zoom into any country with B2P bridges and
-                            click on a project icon for more information.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
+  <div id="map"></div>
+  <div class="toolbar-container">
+    <div class="toolbar">
+      <ul class="nav nav-pills nav-fill gap-2 p-1 me-3 small bg-white rounded-5 " id="map-type" role="tablist"
+        style="--bs-nav-link-color: var(--bs-primary); --bs-nav-pills-link-active-color: var(--bs-white); --bs-nav-pills-link-active-bg: var(--bs-primary); border: 2px solid #E5E5E5;">
+        <li class="nav-item" role="presentation">
+          <button class="nav-link active rounded-5" id="standard-button" data-bs-toggle="tab" type="button" role="tab"
+            aria-selected="true">Standard Map</button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link rounded-5" id="sat-button" data-bs-toggle="tab" type="button" role="tab"
+            aria-selected="false">Satellite Map</button>
+        </li>
+      </ul>
+      <div class="vr"></div>
+      <ul class="nav nav-pills nav-fill gap-2 p-1 ms-3 small bg-white rounded-5 " id="3d-switch" role="tablist"
+        style="--bs-nav-link-color: var(--bs-primary); --bs-nav-pills-link-active-color: var(--bs-white); --bs-nav-pills-link-active-bg: var(--bs-primary); border: 2px solid #E5E5E5;">
+        <li class="nav-item" role="presentation">
+          <button class="nav-link active rounded-5" id="2d-button" data-bs-toggle="tab" type="button" role="tab"
+            aria-selected="true" value="2d">2D Map</button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link rounded-5" id="3d-button" data-bs-toggle="tab" type="button" role="tab"
+            aria-selected="false" value="3d">3D Map</button>
+        </li>
+      </ul>
+      <div class=" ms-3 toolbar-text-vr"></div>
+      <p class="card-text me-3 ms-3 toolbar-text" id="bridge-data">Zoom in to explore bridge sites</p>
     </div>
-
-
-
-    <!-- <div class="map-overlay" id="legend"></div> -->
-    <script src="./main.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-        crossorigin="anonymous"></script>
-
-    <script>
-
-        var transformRequest = (url, resourceType) => {
-            var isMapboxRequest =
-                url.slice(8, 22) === "api.mapbox.com" ||
-                url.slice(10, 26) === "tiles.mapbox.com";
-            return {
-                url: isMapboxRequest ?
-                    url.replace("?", "?pluginName=sheetMapper&") : url,
-            };
-        };
-        //YOUR TURN: add your Mapbox token
-
-        mapboxgl.accessToken =
-            "pk.eyJ1IjoiYjJwIiwiYSI6ImNqeDhkY3NkMDBhaGY0MHQ4MW9xbHhkYWwifQ.xoxPf-dEtQW5CKf6AKf4fw"; //Mapbox token
-
-        var map = new mapboxgl.Map({
-            container: "map", // container id
-            style: "mapbox://styles/b2p/ckkymyxny2ktn17nva7albdy7", // YOUR TURN: choose a style: https://docs.mapbox.com/api/maps/#styles
-            center: [34.50236, 4.26485], // starting position [lng, lat]
-            zoom: 4, // starting zoom
-            hash: true,
-            // projection: 'globe',
-            transformRequest: transformRequest
-        });
-        const nav = new mapboxgl.NavigationControl();
-        map.addControl(nav, 'top-right');
-
-        $(document).ready(function () {
-            $.ajax({
-                type: "GET",
-                // old data: 
-                // url: "https://docs.google.com/spreadsheets/d/1qml0XBe4e1_T5evYCvvqhoo-1Dm2uTLSvdUHiLSSSik/gviz/tq?tqx=out:csv&sheet=B2P_bridges",
-                url: "https://docs.google.com/spreadsheets/d/14x8lX8z4vhXF4eiUoSkKjmlDGRIPc5-y4lc7IuOvgVE/gviz/tq?tqx=out:csv&sheet=B2P_bridges",
-                dataType: "text",
-                success: function (csvData) {
-                    console.log("success", csvData)
-                    makeGeoJSON(csvData);
-                },
-            });
-
-            function makeGeoJSON(csvData) {
-                csv2geojson.csv2geojson(
-                    csvData, {
-                    latfield: "Latitude",
-                    lonfield: "Longitude",
-                    delimiter: ",",
-                },
-                    function (err, data) {
-                        map.on("load", function () {
-                            map.addSource("b2pdata", {
-                                type: "geojson",
-                                data: data
-                            });
-
-                            map.loadImage(
-                                ['./Complete.png'],
-                                (error, image) => {
-                                    if (error) throw error;
-
-                                    map.addImage('completed', image);
-
-                                    // Add a layer to use the image to represent the data.
-                                    map.addLayer({
-                                        'id': 'completedID',
-                                        'type': 'symbol',
-                                        'source': 'b2pdata',
-                                        'layout': {
-                                            'icon-image': [
-                                                'match', ['get', 'Stage'],
-                                                'Complete',
-                                                'completed',
-                                                './complete.png'
-                                            ],
-
-                                            // 'completed', // reference the image
-                                            'icon-size': 0.25
-                                        }
-                                    });
-                                    map.setLayerZoomRange('completedID', 5, 22);
-                                }
-                            );
-                            map.loadImage(
-                                ['./Under Construction.png'],
-                                (error, image) => {
-                                    if (error) throw error;
-
-                                    // Add the image to the map style.
-                                    map.addImage('construction', image);
-
-                                    // Add a layer to use the image to represent the data.
-                                    map.addLayer({
-                                        'id': 'constructionID',
-                                        'type': 'symbol',
-                                        'source': 'b2pdata', // reference the data source
-                                        'layout': {
-                                            'icon-image': [
-                                                'match', ['get', 'Stage'],
-                                                'Under Construction',
-                                                'construction',
-                                                './under-construction.png'
-                                            ],
-
-                                            // 'completed', // reference the image
-                                            'icon-size': 0.25
-                                        }
-                                    });
-                                    map.setLayerZoomRange('constructionID', 5, 22);
-                                }
-                            );
-                            map.loadImage(
-                                ['./Confirmed.png'],
-                                (error, image) => {
-                                    if (error) throw error;
-
-                                    // Add the image to the map style.
-                                    map.addImage('confirmed', image);
-
-                                    // Add a layer to use the image to represent the data.
-                                    map.addLayer({
-                                        'id': 'confirmedID',
-                                        'type': 'symbol',
-                                        'source': 'b2pdata', // reference the data source
-                                        'layout': {
-                                            'icon-image': [
-                                                'match', ['get', 'Stage'],
-                                                'Confirmed',
-                                                'confirmed',
-                                                './confirmed.png'
-                                            ],
-
-                                            // 'completed', // reference the image
-                                            'icon-size': 0.25
-                                        }
-                                    });
-                                    map.setLayerZoomRange('confirmedID', 5, 22);
-                                }
-                            );
-
-                            // When a click event occurs on a feature in the csvData layer, open a popup at the
-                            // location of the feature, with description HTML from its properties.
-                            const layerList = ["completedID", "constructionID", "confirmedID"]
-
-                            layerList.forEach(function (i) {
-                                // console.log(i);
-
-                                map.on("click", i, function (e) {
-                                    var coordinates = e.features[0].geometry.coordinates.slice();
-
-                                    // Set popup text
-                                    var description =
-                                        `<div class="card border-0" style="max-width: 20rem;">
-                                            <div class="card-header fw-bold px-2">` + e.features[0].properties.Name + `</div>
-                                            <div class="card-body px-2">
-                                                <p class="card-text py-0">Population Directly Served: ` + e.features[0].properties.Pop_served + `</p>
-                                                <p class="card-text py-0">Country: ` + e.features[0].properties.Country + `</p>
-                                                <p class="card-text py-0">Stage: ` + e.features[0].properties.Stage + `</p>
-                                                <p class="card-text py-0">Bridge Type: ` + e.features[0].properties.Bridge_type + `</p>
-                                                <p class="card-text py-0">Project Type: ` + e.features[0].properties.Project_type + `</p>
-                                            </div>
-                                        </div>`;
-
-                                    // Ensure that if the map is zoomed out such that multiple
-                                    // copies of the feature are visible, the popup appears
-                                    // over the copy being pointed to.
-                                    while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
-                                        coordinates[0] +=
-                                            e.lngLat.lng > coordinates[0] ? 360 : -360;
-                                    }
-
-                                    // Add Popup to map
-                                    new mapboxgl.Popup()
-                                        .setLngLat(coordinates)
-                                        .setHTML(description)
-                                        .addTo(map);
-                                });
-
-                                // Change the cursor to a pointer when the mouse is over the places layer.
-                                map.on("mouseenter", i, function () {
-                                    map.getCanvas().style.cursor = "pointer";
-                                });
-
-                                // Change it back to a pointer when it leaves.
-                                map.on("mouseleave", i, function () {
-                                    map.getCanvas().style.cursor = "";
-                                });
-                            });
-                            // TODO ADD COUNTRY LAYER HERE (ADD SOURCE, ADD LAYER, ADD LABEL)
-                            let countryList = []
-                            data.features.forEach(function (c) {
-                                countryList.push(c.properties.Country)
-
-                            })
-                            let uniqueCountries = countryList.filter(onlyUnique);
-                            const counts = {};
-
-                            for (const c of countryList) {
-                                counts[c] = counts[c] ? counts[c] + 1 : 1;
-                            }
-                            // console.log(counts.Nepal);
-                            for (const c in counts) {
-                                // console.log(c, counts[c]);
-                            };
-                            map.addLayer({
-                                id: "countryActive",
-                                source: {
-                                    type: "vector",
-                                    url: "mapbox://mapbox.country-boundaries-v1"
-                                },
-                                "source-layer": "country_boundaries",
-                                type: "fill",
-                                'paint': {
-                                    'fill-color': '#006400', // green color fill
-                                    'fill-opacity': 0.3
-                                },
-                                'maxzoom': 5,
-                                filter: [
-                                    "all", [
-                                        "match", ["get", "name_en"],
-                                        uniqueCountries,
-                                        true,
-                                        false
-                                    ]
-                                ]
-                            },
-                                'mapbox-satellite');
-                            map.setFilter('country-label-far', [
-                                "all", [
-                                    "match", ["get", "name_en"],
-                                    uniqueCountries,
-                                    true,
-                                    false
-                                ]
-                            ]);
-
-
-                            // uniqueCountries.forEach(function(l) {
-                            //     console.log(l)
-                            //     map.setLayoutProperty('country-label-far', 'text-field', [
-                            //         'format', ['get', 'name_en'], {
-                            //             'font-scale': 1.2
-                            //         },
-                            //         '\n', {},
-                            //         ['match', ['get', 'name_en'], l, 'whatsup', ''],
-                            //         // ['get', 'name_en'], "hello", {
-                            //         //     'font-scale': 0.8,
-                            //         //     'text-font': [
-                            //         //         'literal', ['DIN Offc Pro Italic', 'Arial Unicode MS Regular']
-                            //         //     ]
-                            //         // }
-                            //     ]);
-                            // });
-                            // map.setLayoutProperty('country-label-far', 'text-field', [{
-                            //     ["match", ["get", "name_en"], 'Ethiopia', 'customLabel']
-                            // }]);
-                            // uniqueCountries.forEach(function(l) {
-                            //     map.setLayoutProperty('country-label-far', 'text-field', [
-                            //         'format', ['get', 'name_en'], {
-                            //             'font-scale': 1.2
-                            //         },
-                            //         '\n', {},
-                            //         ["match", ["get", "name_en"], l, 'customLabel', 'othertext'], {
-                            //             'font-scale': 0.8,
-                            //             'text-font': [
-                            //                 'literal', ['DIN Offc Pro Italic', 'Arial Unicode MS Regular']
-                            //             ]
-                            //         }
-                            //     ]);
-                            // });
-                        });
-
-                        // map.setLayoutProperty('country-label-far', 'text-field', [
-                        //     'format', ['get', 'name_en'], {
-                        //         'font-scale': 1.2
-                        //     },
-                        //     '\n', {},
-                        //     ['match', ['get', 'name_en'], 'Kenya', 'whatsup', ''],
-                        //     // ['get', 'name_en'], "hello", {
-                        //     //     'font-scale': 0.8,
-                        //     //     'text-font': [
-                        //     //         'literal', ['DIN Offc Pro Italic', 'Arial Unicode MS Regular']
-                        //     //     ]
-                        //     // }
-                        // ]);
-                    });
-            }
-        });
-
-
-        var layers = ["Completed", "In Progress"];
-        var colors = ["#009149", "#EA7149"];
-
-        // Create the legend
-        var legend = document.createElement("div");
-
-        for (var i = 0; i < layers.length; i++) {
-            var layer = layers[i];
-            var color = colors[i];
-            var item = document.createElement("div");
-            var key = document.createElement("span");
-            key.className = "legend-key";
-            key.style.backgroundColor = color;
-
-            var value = document.createElement("span");
-            value.innerHTML = layer;
-            item.appendChild(key);
-            item.appendChild(value);
-            legend.appendChild(item);
-        }
-
-        // Get the collapseOne element by its ID
-        var legendMenu = document.getElementById("legend-menu");
-
-        // Append the legend to the collapseOne div
-        legendMenu.appendChild(legend);
-
-        document.getElementById("satellite-checkbox").onclick = function () {
-            if (this.checked) {
-                map.setLayoutProperty("mapbox-satellite", "visibility", "visible");
-            } else {
-                map.setLayoutProperty("mapbox-satellite", "visibility", "none");
-            }
-        };
-
-        document.getElementById("3d-checkbox").onclick = function () {
-            if (this.checked) {
-                map.easeTo({
-                    pitch: 65
-                });
-            } else {
-                map.easeTo({
-                    pitch: 0
-                });
-            }
-        };
-
-        function onlyUnique(value, index, self) {
-            return self.indexOf(value) === index;
-        }
-        const geocoder = new MapboxGeocoder({
-            accessToken: mapboxgl.accessToken,
-            mapboxgl: mapboxgl,
-            bbox: [28.8560, -2.8400, 30.8954, -1.0546]
-        });
-        document.getElementById('geocoder').appendChild(geocoder.onAdd(map));
-    </script>
+  </div>
+  <div class="side-bar" id="side-bar">
+    <div class="sidebar-button" id="sidebar-button">
+      <div class="sidebar-button-img" id="sidebar-button-img"></div>
+    </div>
+  </div>
+  <div class="bridge-card" id="bridge-card">
+    <div class="bridge-card-button-container" id="bridge-card-button-container">
+      <div class="bridge-card-button-img" id="bridge-card-button-img"></div>
+    </div>
+    <div class="bridge-card-title" id="bridge-card-title"></div>
+    <div class="bridge-card-text" id="bridge-card-text"></div>
+  </div>
+  <script type="module" src="main.js"></script>
 </body>
 
 </html>
-
-
-<!DOCTYPE html>
