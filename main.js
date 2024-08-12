@@ -1,8 +1,8 @@
-import "./custom-style.css";
 import mapboxgl from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
-import "bootstrap/scss/bootstrap.scss";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
+import "bootstrap/scss/bootstrap.scss";
+import "./custom-style.css";
 import { parse } from "papaparse";
 import { addBridgeLayers } from "./add-bridges";
 import { addSidebar } from "./sidebar";
@@ -22,7 +22,6 @@ map.on("load", () => {
     // Iterate over each region and then each country within that region
     addSidebar(map);
     addToolbar(map);
-    // Assuming map is your initialized Mapbox GL JS map
     fetch("https://public-b2p-geodata.s3.amazonaws.com/webmap-bridges/webmap-bridges.csv")
         .then((response) => response.text())
         .then((csv) => {
