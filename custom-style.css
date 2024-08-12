@@ -172,7 +172,7 @@ body {
     position: absolute;
     top: 37px;
     right: -1px;
-    background-image: url("/bridge-locations-map/vertical-lines.svg");
+    background-image: url("/vertical-lines.svg");
     background-repeat: no-repeat;
     background-position: center;
     transition: transform 0.2s ease;
@@ -180,7 +180,7 @@ body {
 
 .sidebar-button:hover .sidebar-button-img {
     transform: rotate(0deg);
-    background-image: url("/bridge-locations-map/vertical-lines-green.svg");
+    background-image: url("/vertical-lines-green.svg");
 }
 
 .bridge-card {
@@ -218,7 +218,7 @@ body {
 .bridge-card-button-img {
     width: 20px; /* Adjusted size for the 'x' */
     height: 20px; /* Adjusted size for the 'x' */
-    background-image: url("/bridge-locations-map/x-button.svg");
+    background-image: url("/x-button.svg");
     background-repeat: no-repeat;
     background-position: center;
     transition: transform 0.2s ease;
