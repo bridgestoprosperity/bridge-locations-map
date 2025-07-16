@@ -19,6 +19,10 @@ const map = new mapboxgl.Map({
 });
 
 map.on("load", () => {
+    const nav = new mapboxgl.NavigationControl({
+        visualizePitch: true
+    });
+    map.addControl(nav, 'bottom-right');
     // Iterate over each region and then each country within that region
     addSidebar(map);
     addToolbar(map);
