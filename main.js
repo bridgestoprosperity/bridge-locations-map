@@ -9,7 +9,7 @@ import { addSidebar } from "./sidebar";
 import { addToolbar } from "./add-toolbar";
 
 // map stuff
-mapboxgl.accessToken = "pk.eyJ1IjoiYnJpZGdlc3RvcHJvc3Blcml0eSIsImEiOiJjajRpd2sxeGQwMjU5MnhxajJkNzZnODZtIn0.UrOwxq6A1Zl2yvwzYxBudQ";
+mapboxgl.accessToken = "pk.eyJ1IjoiYnJpZGdlc3RvcHJvc3Blcml0eSIsImEiOiJjbG51aHV6MDEwZDI1Mmx0MzhqcHFvb3BuIn0.wgSlMp8cyuIYVMvj_p-Ojg";
 const map = new mapboxgl.Map({
     container: "map", // container ID
     style: "mapbox://styles/bridgestoprosperity/cltoqo59801dy01pth4rje7h5", // style URL
