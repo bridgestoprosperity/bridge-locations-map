@@ -30,7 +30,12 @@ map.on("load", () => {
         .then((response) => response.text())
         .then((csv) => {
             // Parse the CSV into JSON
-            var data = parse(csv, { header: true }).data;
+            var data = parse(csv, { header: true }).data.filter((item) => {
+                // Drop rows with missing, non-numeric, or 0,0 GPS coordinates
+                const lat = parseFloat(item.GPS__Latitude__s);
+                const lng = parseFloat(item.GPS__Longitude__s);
+                return Number.isFinite(lat) && Number.isFinite(lng) && !(lat === 0 && lng === 0);
+            });
             // create a json object that is how many bridges are in each country
             let countryBridgeCount = {};
             data.forEach((item) => {
